@@ -155,38 +155,7 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bd2f95fe07d60ed48b8a3890d52b47ce, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1040969485 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1325849306072012, guid: a0003d3506204af48abeaf77a8453ac6,
-    type: 2}
-  m_PrefabInternal: {fileID: 1211342733}
---- !u!54 &1040969486
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1040969485}
-  serializedVersion: 2
-  m_Mass: 0.1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &1040969488
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1040969485}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3ea3d1320a6ea14cbfd1a3daf78be13, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1001 &1211342733
+--- !u!1001 &1207520827
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -225,6 +194,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 82805022728196792, guid: a0003d3506204af48abeaf77a8453ac6,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a167f750c35ce6e4e8da1947c4b2c70d, type: 3}
+    - target: {fileID: 82805022728196792, guid: a0003d3506204af48abeaf77a8453ac6,
+        type: 2}
+      propertyPath: m_Pitch
+      value: 0.8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a0003d3506204af48abeaf77a8453ac6, type: 2}
   m_IsPrefabParent: 0
@@ -241,15 +220,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4128985763897286, guid: b39bac9cff9db1e47bdb2886d598792f, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4128985763897286, guid: b39bac9cff9db1e47bdb2886d598792f, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -20
+      value: -31
       objectReference: {fileID: 0}
     - target: {fileID: 4128985763897286, guid: b39bac9cff9db1e47bdb2886d598792f, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.15548621
       objectReference: {fileID: 0}
     - target: {fileID: 4128985763897286, guid: b39bac9cff9db1e47bdb2886d598792f, type: 2}
       propertyPath: m_LocalRotation.y
@@ -261,7 +240,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4128985763897286, guid: b39bac9cff9db1e47bdb2886d598792f, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9878381
       objectReference: {fileID: 0}
     - target: {fileID: 4128985763897286, guid: b39bac9cff9db1e47bdb2886d598792f, type: 2}
       propertyPath: m_RootOrder
