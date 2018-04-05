@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Collections;
+using System.Collections.Generic;
 using Mono.Data.Sqlite;
 using UnityEngine;
 
@@ -8,10 +9,12 @@ public class HighScoreManager : MonoBehaviour {
 
     private string connectionString;
 
+    private List<HighScore> highscores = new List<HighScore>();
+
 	// Use this for initialization
 	void Start () {
         connectionString  = "URI=file:" + Application.dataPath + "/HighScoreDB.sqlite";
-        InsertScore("Duncan", 0);
+       // InsertScore("Duncan", 0);
         DeleteScore(2);
         GetScores();
 
@@ -48,6 +51,7 @@ public class HighScoreManager : MonoBehaviour {
 
     private void GetScores()
     {
+        highscores.Clear();
         using (IDbConnection dbConnection = new SqliteConnection(connectionString))
         {
             dbConnection.Open();
@@ -62,7 +66,7 @@ public class HighScoreManager : MonoBehaviour {
                 {
                     while (reader.Read())
                     {
-                        Debug.Log(reader.GetString(1) + reader.GetInt32(2));
+                        highscores.Add(new HighScore(reader.GetInt32(0), reader.GetInt32(2), reader.GetString(1), reader.GetDateTime(3)));
                         
                     }
 
