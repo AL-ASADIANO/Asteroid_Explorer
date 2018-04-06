@@ -11,6 +11,8 @@ public class HighScoreManager : MonoBehaviour {
 
     private List<HighScore> highscores = new List<HighScore>();
 
+    public GameObject scorePrefab;
+
 	// Use this for initialization
 	void Start () {
         connectionString  = "URI=file:" + Application.dataPath + "/HighScoreDB.sqlite";
@@ -47,7 +49,6 @@ public class HighScoreManager : MonoBehaviour {
         }
 
     }
-
 
     private void GetScores()
     {
@@ -97,6 +98,18 @@ public class HighScoreManager : MonoBehaviour {
 
             }
 
+        }
+    }
+
+    private void ShowScores()
+    {
+        for (int i = 0; i < highscores.Count; i++)
+        {
+            GameObject tmpObject = Instantiate(scorePrefab);
+
+            HighScore tmpScore = highscores[i];
+
+            //tmpObject.GetComponent<HighScoreScript>()
         }
     }
 }

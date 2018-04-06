@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 08db1419d5baba64a82e8f152c7846d0
-timeCreated: 1522928320
+guid: a5434472c6c9feb4ea851de0d1613e46
+timeCreated: 1523006349
 licenseType: Free
 TrueTypeFontImporter:
   externalObjects: {}
@@ -10,9 +10,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Unispace
+  fontName: ArcadeClassic
   fontNames:
-  - Unispace
+  - ArcadeClassic
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
