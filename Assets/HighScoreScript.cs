@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HighScoreScript : MonoBehaviour {
 
@@ -10,6 +11,8 @@ public class HighScoreScript : MonoBehaviour {
 
     public void SetScore(string name, string score, string rank)
     {
-
+        this.rank.GetComponent<Text>().text = rank;
+        this.scoreName.GetComponent<Text>().text = name;
+        this.score.GetComponent<Text>().text = score;
     }
 }

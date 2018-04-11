@@ -13,14 +13,16 @@ public class HighScoreManager : MonoBehaviour {
 
     public GameObject scorePrefab;
 
+    public Transform scoreParent;
+
 	// Use this for initialization
 	void Start () {
         connectionString  = "URI=file:" + Application.dataPath + "/HighScoreDB.sqlite";
-       // InsertScore("Duncan", 0);
-        DeleteScore(2);
-        GetScores();
+        InsertScore("Duncan", 24);
 
+        //GetScores();
 
+        ShowScores();
 	}
 	
 	// Update is called once per frame
@@ -103,13 +105,18 @@ public class HighScoreManager : MonoBehaviour {
 
     private void ShowScores()
     {
+        GetScores();
         for (int i = 0; i < highscores.Count; i++)
         {
             GameObject tmpObject = Instantiate(scorePrefab);
 
             HighScore tmpScore = highscores[i];
 
-            //tmpObject.GetComponent<HighScoreScript>()
+            tmpObject.GetComponent<HighScoreScript>().SetScore(tmpScore.Name, tmpScore.Score.ToString(), "#" + (i + 1).ToString());
+
+            tmpObject.transform.SetParent(scoreParent);
+
+            tmpObject.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
         }
     }
 }

@@ -111,9 +111,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '#1
-
-'
+  m_Text: 
 --- !u!114 &114112361096657030
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -146,7 +144,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 20
+  m_Text: 
 --- !u!114 &114399930800801800
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -179,7 +177,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Lewis
+  m_Text: 
 --- !u!114 &114936133051065252
 MonoBehaviour:
   m_ObjectHideFlags: 1
