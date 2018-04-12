@@ -15,12 +15,15 @@ public class HighScoreManager : MonoBehaviour {
 
     public Transform scoreParent;
 
+    public int topRanks;
+
+    public int savedScores;
+
 	// Use this for initialization
 	void Start () {
         connectionString  = "URI=file:" + Application.dataPath + "/HighScoreDB.sqlite";
-        InsertScore("Duncan", 24);
-
-        //GetScores();
+        
+        DeleteExtraScores();
 
         ShowScores();
 	}
@@ -80,7 +83,7 @@ public class HighScoreManager : MonoBehaviour {
 
         }
 
-        
+        highscores.Sort();
     }
 
     private void DeleteScore(int id)
@@ -106,17 +109,53 @@ public class HighScoreManager : MonoBehaviour {
     private void ShowScores()
     {
         GetScores();
-        for (int i = 0; i < highscores.Count; i++)
+
+        for (int i = 0; i < topRanks; i++)
         {
-            GameObject tmpObject = Instantiate(scorePrefab);
+            if (i <= highscores.Count - 1)
+            {
+                GameObject tmpObject = Instantiate(scorePrefab);
 
-            HighScore tmpScore = highscores[i];
+                HighScore tmpScore = highscores[i];
 
-            tmpObject.GetComponent<HighScoreScript>().SetScore(tmpScore.Name, tmpScore.Score.ToString(), "#" + (i + 1).ToString());
+                tmpObject.GetComponent<HighScoreScript>().SetScore(tmpScore.Name, tmpScore.Score.ToString(), "#" + (i + 1).ToString());
 
-            tmpObject.transform.SetParent(scoreParent);
+                tmpObject.transform.SetParent(scoreParent);
 
-            tmpObject.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+                tmpObject.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+            }
+        }
+    }
+
+    private void DeleteExtraScores()
+    {
+        GetScores();
+
+        if (savedScores <= highscores.Count)
+        {
+            int deleteCount = highscores.Count - savedScores;
+            highscores.Reverse();
+
+            using (IDbConnection dbConnection = new SqliteConnection(connectionString))
+            {
+                dbConnection.Open();
+
+                using (IDbCommand dbCmd = dbConnection.CreateCommand())
+                {
+                    for (int i = 0; i < deleteCount; i++)
+                    {
+                        string sqlQuery = String.Format("DELETE FROM HighScores WHERE PlayerID = \"{0}\"", highscores[i].ID);
+                       
+                        dbCmd.CommandText = sqlQuery;
+                        dbCmd.ExecuteScalar();
+                        
+                    }
+                    dbConnection.Close();
+
+
+                }
+
+            }
         }
     }
 }
