@@ -22,6 +22,8 @@ public class HighScoreManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         connectionString  = "URI=file:" + Application.dataPath + "/HighScoreDB.sqlite";
+
+        InsertScore("potato", 70);
         
         DeleteExtraScores();
 
@@ -36,22 +38,38 @@ public class HighScoreManager : MonoBehaviour {
 
     private void InsertScore(string name, int newScore)
     {
-        using (IDbConnection dbConnection = new SqliteConnection(connectionString))
+        GetScores();
+        int hsCount = highscores.Count;
+
+        if(highscores.Count > 0)
         {
-            dbConnection.Open();
-
-            using (IDbCommand dbCmd = dbConnection.CreateCommand())
+            HighScore lowestScore = highscores[highscores.Count - 1];
+            if (lowestScore != null && savedScores > 0 && highscores.Count >= savedScores && newScore > lowestScore.Score)
             {
-                string sqlQuery = String.Format("INSERT INTO HighScores(Name,LevelsCompleted) VALUES(\"{0}\",\"{1}\")",name,newScore);
-
-                dbCmd.CommandText = sqlQuery;
-                dbCmd.ExecuteScalar();
-                dbConnection.Close();
-
-               
+                DeleteScore(lowestScore.ID);
+                hsCount--;
             }
-
         }
+        if (hsCount < savedScores)
+        {
+            using (IDbConnection dbConnection = new SqliteConnection(connectionString))
+            {
+                dbConnection.Open();
+
+                using (IDbCommand dbCmd = dbConnection.CreateCommand())
+                {
+                    string sqlQuery = String.Format("INSERT INTO HighScores(Name,LevelsCompleted) VALUES(\"{0}\",\"{1}\")", name, newScore);
+
+                    dbCmd.CommandText = sqlQuery;
+                    dbCmd.ExecuteScalar();
+                    dbConnection.Close();
+
+
+                }
+
+            }
+        }
+        
 
     }
 

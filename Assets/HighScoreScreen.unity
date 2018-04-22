@@ -472,8 +472,8 @@ MonoBehaviour:
   scorePrefab: {fileID: 1499075435881636, guid: a5e607a772f6e60448f8b24483f222eb,
     type: 2}
   scoreParent: {fileID: 325888213}
-  topRanks: 50
-  savedScores: 10
+  topRanks: 20
+  savedScores: 5
 --- !u!4 &751248014
 Transform:
   m_ObjectHideFlags: 0
@@ -696,12 +696,12 @@ Prefab:
     - target: {fileID: 114494769829511132, guid: a0ee46214e8634b4e9048d45aa9f7255,
         type: 2}
       propertyPath: topRanks
-      value: 50
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 114494769829511132, guid: a0ee46214e8634b4e9048d45aa9f7255,
         type: 2}
       propertyPath: savedScores
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a0ee46214e8634b4e9048d45aa9f7255, type: 2}
