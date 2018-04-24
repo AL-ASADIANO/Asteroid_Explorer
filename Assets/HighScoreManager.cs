@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Mono.Data.Sqlite;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HighScoreManager : MonoBehaviour {
 
@@ -19,11 +20,15 @@ public class HighScoreManager : MonoBehaviour {
 
     public int savedScores;
 
+    public InputField enterName;
+
+    public GameObject nameDialog;
+
 	// Use this for initialization
 	void Start () {
         connectionString  = "URI=file:" + Application.dataPath + "/HighScoreDB.sqlite";
 
-        InsertScore("potato", 70);
+       // InsertScore("potato", 70);
         
         DeleteExtraScores();
 
@@ -31,10 +36,24 @@ public class HighScoreManager : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
+	void Update ()
+    {
+		if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            nameDialog.SetActive(!nameDialog.activeSelf);
+        }
 	}
+    public void EnterName()
+    {
+        if (enterName.text != string.Empty)
+        {
+            int score = UnityEngine.Random.Range(1, 50);
+            InsertScore(enterName.text, score);
+            enterName.text = string.Empty;
 
+            ShowScores();
+        }
+    }
 
     private void InsertScore(string name, int newScore)
     {
@@ -127,6 +146,11 @@ public class HighScoreManager : MonoBehaviour {
     private void ShowScores()
     {
         GetScores();
+
+        foreach (GameObject score in GameObject.FindGameObjectsWithTag("Score"))
+        {
+            Destroy(score);
+        }
 
         for (int i = 0; i < topRanks; i++)
         {
