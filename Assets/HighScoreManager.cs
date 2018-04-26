@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Mono.Data.Sqlite;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HighScoreManager : MonoBehaviour {
 
@@ -42,12 +43,17 @@ public class HighScoreManager : MonoBehaviour {
         {
             nameDialog.SetActive(!nameDialog.activeSelf);
         }
-	}
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SceneManager.LoadScene(0);
+        }
+    }
     public void EnterName()
     {
         if (enterName.text != string.Empty)
         {
-            int score = UnityEngine.Random.Range(1, 50);
+            int score = UnityEngine.Random.Range(1, 100);
             InsertScore(enterName.text, score);
             enterName.text = string.Empty;
 
@@ -200,4 +206,6 @@ public class HighScoreManager : MonoBehaviour {
             }
         }
     }
+
+  
 }

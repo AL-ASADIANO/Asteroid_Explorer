@@ -21,6 +21,8 @@ public class Rocket : MonoBehaviour {
     Rigidbody rigidBody;
     AudioSource audioSource;
 
+    public GameObject mainMenuCanvas;
+
     enum State { Alive, Dying, Transcending}
     State state = State.Alive;
 
@@ -28,6 +30,10 @@ public class Rocket : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            state = State.Transcending;
+        }
         rigidBody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
 
@@ -99,17 +105,19 @@ public class Rocket : MonoBehaviour {
 
     private void LoadFirstLevel()
     {
-        SceneManager.LoadScene(5);
+        int Score = SceneManager.GetActiveScene().buildIndex +1;
+        HighScoreManager
+        SceneManager.LoadScene(21);
     }
 
     private void LoadNextLevel()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         int nextSceneIndex = currentSceneIndex + 1;
-        if (nextSceneIndex == 5)
-        {
-            nextSceneIndex = 0; // change to end screen
-        }
+        /* if (nextSceneIndex == 20)
+         {
+             nextSceneIndex = 21; // change to end screen
+         }*/
         SceneManager.LoadScene(nextSceneIndex);
     }
 
@@ -153,6 +161,21 @@ public class Rocket : MonoBehaviour {
 
         rigidBody.freezeRotation = false;
     }
+    public void Play()
+    {
+        mainMenuCanvas.SetActive(!mainMenuCanvas.activeSelf);
+        state = State.Alive;
+    }
 
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
+    public void HighScoresButton()
+    {
+        SceneManager.LoadScene(20);
+    }
 
 }
+ 
