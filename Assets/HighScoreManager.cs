@@ -91,6 +91,7 @@ public class HighScoreManager : MonoBehaviour {
             enterName.text = string.Empty;
             nameDialog.SetActive(!nameDialog.activeSelf);
             ShowScores();
+            InputName = false;
         }
     }
 
