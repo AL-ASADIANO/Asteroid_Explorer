@@ -21,6 +21,9 @@ public class Rocket : MonoBehaviour {
     Rigidbody rigidBody;
     AudioSource audioSource;
 
+    public static int Score;
+
+
     public GameObject mainMenuCanvas;
 
     enum State { Alive, Dying, Transcending}
@@ -105,9 +108,13 @@ public class Rocket : MonoBehaviour {
 
     private void LoadFirstLevel()
     {
-        int Score = SceneManager.GetActiveScene().buildIndex +1;
-        HighScoreManager
-        SceneManager.LoadScene(21);
+        Score = SceneManager.GetActiveScene().buildIndex +1;
+        if (PlayerPrefs.HasKey("CurrentHighScore"))
+        {
+            PlayerPrefs.DeleteKey("CurrentHighScore");
+        }
+        PlayerPrefs.SetInt("CurrentHighScore", Score);
+        SceneManager.LoadScene(20);
     }
 
     private void LoadNextLevel()

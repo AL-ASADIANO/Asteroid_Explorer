@@ -25,12 +25,24 @@ public class HighScoreManager : MonoBehaviour {
 
     public GameObject nameDialog;
 
-	// Use this for initialization
-	void Start () {
-        connectionString  = "URI=file:" + Application.dataPath + "/HighScoreDB.sqlite";
+    public int currentScore = 0;
 
-       // InsertScore("potato", 70);
-        
+    public bool InputName = false;
+
+    // Use this for initialization
+    void Start () {
+       connectionString  = "URI=file:" + Application.dataPath + "/HighScoreDB.sqlite";
+
+       CreateTable();
+
+       currentScore = PlayerPrefs.GetInt("CurrentHighScore");
+        // InsertScore("potato", 70);
+        if (currentScore != 0)
+        {
+            nameDialog.SetActive(!nameDialog.activeSelf);
+            InputName = true;
+            PlayerPrefs.DeleteKey("CurrentHighScore");
+        }
         DeleteExtraScores();
 
         ShowScores();
@@ -39,24 +51,45 @@ public class HighScoreManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-		if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            nameDialog.SetActive(!nameDialog.activeSelf);
-        }
+		//if (Input.GetKeyDown(KeyCode.Escape))
+  //      {
+  //          nameDialog.SetActive(!nameDialog.activeSelf);
+  //      }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && InputName == false)
         {
             SceneManager.LoadScene(0);
         }
     }
+
+    private void CreateTable()
+    {
+        using (IDbConnection dbConnection = new SqliteConnection(connectionString))
+        {
+            dbConnection.Open();
+
+            using (IDbCommand dbCmd = dbConnection.CreateCommand())
+            {
+                string sqlQuery = String.Format("CREATE TABLE if not exists HighScores (PlayerID INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE , Name TEXT DEFAULT John, LevelsCompleted INTEGER, Date DATETIME DEFAULT CURRENT_DATE)");
+
+                dbCmd.CommandText = sqlQuery;
+                dbCmd.ExecuteScalar();
+                dbConnection.Close();
+
+
+            }
+
+        }
+    }
+
     public void EnterName()
     {
         if (enterName.text != string.Empty)
         {
-            int score = UnityEngine.Random.Range(1, 100);
-            InsertScore(enterName.text, score);
+            
+            InsertScore(enterName.text, currentScore);
             enterName.text = string.Empty;
-
+            nameDialog.SetActive(!nameDialog.activeSelf);
             ShowScores();
         }
     }

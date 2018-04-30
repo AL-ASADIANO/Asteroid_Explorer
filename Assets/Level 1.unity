@@ -89,7 +89,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
-  m_LightingDataAsset: {fileID: 112000002, guid: 62fc36d9be46a3643b5bbe5da8b615a2,
+  m_LightingDataAsset: {fileID: 112000002, guid: 2a8df58152b76804ea531973fcbf648a,
     type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -1227,7 +1227,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000061035, y: 0}
+  m_AnchoredPosition: {x: 0.000061035, y: -58.600006}
   m_SizeDelta: {x: 339.34, y: 59.89}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &668842064
@@ -2609,7 +2609,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1816532887
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2956,7 +2956,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000015259, y: 106.6}
+  m_AnchoredPosition: {x: -0.000015259, y: 48}
   m_SizeDelta: {x: 339.34, y: 59.89}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2073378685
