@@ -9,6 +9,7 @@ public class Rocket : MonoBehaviour {
     [SerializeField] float rotThrust = 100f;
     [SerializeField] float mainThrust = 100f;
     [SerializeField] float levelLoadDelay = 2f;
+ 
 
     [SerializeField] AudioClip mainEngine;
     [SerializeField] AudioClip success;
@@ -18,6 +19,8 @@ public class Rocket : MonoBehaviour {
     [SerializeField] ParticleSystem successParticles;
     [SerializeField] ParticleSystem deathParticles;
 
+    [SerializeField] int numLife =3;
+
     Rigidbody rigidBody;
     AudioSource audioSource;
 
@@ -25,6 +28,7 @@ public class Rocket : MonoBehaviour {
 
 
     public GameObject mainMenuCanvas;
+    public GameObject deathMenuCanvas;
 
     enum State { Alive, Dying, Transcending}
     State state = State.Alive;
@@ -53,7 +57,14 @@ public class Rocket : MonoBehaviour {
         {
             RespondToDebugKeys();
         }
-        
+        if (Input.GetKeyDown(KeyCode.Space) && state == State.Dying)
+        {
+            SceneManager.LoadScene(0);
+        }
+        else if(Input.GetKeyDown(KeyCode.H) && state == State.Dying)
+        {
+            LoadFirstLevel();
+        }
     }
 
     private void RespondToDebugKeys()
@@ -94,7 +105,7 @@ public class Rocket : MonoBehaviour {
         audioSource.Stop();
         deathParticles.Play();
         audioSource.PlayOneShot(death);
-        Invoke("LoadFirstLevel", levelLoadDelay);
+        Invoke("DeathMenu", levelLoadDelay);
     }
 
     private void StartSuccessSequence()
@@ -103,7 +114,16 @@ public class Rocket : MonoBehaviour {
         audioSource.Stop();
         audioSource.PlayOneShot(success);
         successParticles.Play();
+        if(SceneManager.GetActiveScene().buildIndex == 19)
+        {
+            Invoke("LoadFirstLevel", levelLoadDelay);
+        }
         Invoke("LoadNextLevel", levelLoadDelay);
+    }
+
+    private void DeathMenu()
+    {
+        deathMenuCanvas.SetActive(!deathMenuCanvas.activeSelf);
     }
 
     private void LoadFirstLevel()
@@ -174,10 +194,22 @@ public class Rocket : MonoBehaviour {
         state = State.Alive;
     }
 
-    public void Quit()
+    public void Retry()
     {
-        Application.Quit();
+        print("retry");
+        SceneManager.LoadScene(0);
     }
+    public void SetHighScore()
+    {
+
+        print("retry2");
+        LoadFirstLevel();
+    }
+
+    //public void Quit()
+    //{
+    //    Application.Quit();
+    //}
 
     public void HighScoresButton()
     {
