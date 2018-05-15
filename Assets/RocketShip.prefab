@@ -802,7 +802,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: PRESS  'Space'   to retry
+  m_Text: PRESS  'R'   to retry
 --- !u!114 &114350538754844106
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1060,6 +1060,7 @@ MonoBehaviour:
   numLife: 3
   mainMenuCanvas: {fileID: 1971921391069072}
   deathMenuCanvas: {fileID: 1971921391069072}
+  howToPlayCanvas: {fileID: 0}
 --- !u!114 &114979277131908138
 MonoBehaviour:
   m_ObjectHideFlags: 1

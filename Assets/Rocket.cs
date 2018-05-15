@@ -29,6 +29,7 @@ public class Rocket : MonoBehaviour {
 
     public GameObject mainMenuCanvas;
     public GameObject deathMenuCanvas;
+    public GameObject howToPlayCanvas;
 
     enum State { Alive, Dying, Transcending}
     State state = State.Alive;
@@ -57,7 +58,7 @@ public class Rocket : MonoBehaviour {
         {
             RespondToDebugKeys();
         }
-        if (Input.GetKeyDown(KeyCode.Space) && state == State.Dying)
+        if (Input.GetKeyDown(KeyCode.R) && state == State.Dying)
         {
             SceneManager.LoadScene(0);
         }
@@ -194,27 +195,33 @@ public class Rocket : MonoBehaviour {
         state = State.Alive;
     }
 
-    public void Retry()
+    public void HowToPlay()
     {
-        print("retry");
+        mainMenuCanvas.SetActive(!mainMenuCanvas.activeSelf);
+        howToPlayCanvas.SetActive(!howToPlayCanvas.activeSelf);
+    }
+
+
+    public void Retry()
+    {       
         SceneManager.LoadScene(0);
     }
     public void SetHighScore()
     {
-
-        print("retry2");
         LoadFirstLevel();
     }
 
-    //public void Quit()
-    //{
-    //    Application.Quit();
-    //}
+    public void Quit()
+    {
+        Application.Quit();
+    }
 
     public void HighScoresButton()
     {
         SceneManager.LoadScene(20);
     }
+
+
 
 }
  
