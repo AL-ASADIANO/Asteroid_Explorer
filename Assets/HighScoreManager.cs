@@ -23,7 +23,11 @@ public class HighScoreManager : MonoBehaviour {
 
     public InputField enterName;
 
+    public InputField enterScoreToDel;
+
     public GameObject nameDialog;
+
+    public GameObject deleteDialog;
 
     public int currentScore = 0;
 
@@ -56,10 +60,10 @@ public class HighScoreManager : MonoBehaviour {
   //          nameDialog.SetActive(!nameDialog.activeSelf);
   //      }
 
-        if (Input.GetKeyDown(KeyCode.Space) && InputName == false)
-        {
-            SceneManager.LoadScene(0);
-        }
+        //if (Input.GetKeyDown(KeyCode.Space) && InputName == false)
+        //{
+        //    SceneManager.LoadScene(0);
+        //}
     }
 
     private void CreateTable()
@@ -241,5 +245,38 @@ public class HighScoreManager : MonoBehaviour {
         }
     }
 
-  
+    public void DeleteScoreMenu()
+    {
+        deleteDialog.SetActive(!deleteDialog.activeSelf);
+    }
+
+    public void Retry()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void BackToHighscore()
+    {
+        SceneManager.LoadScene(20);
+    }
+
+    public void EnterScoreToDel()
+    {
+        if (enterScoreToDel.text != string.Empty)
+        {
+            int ScoreToDel= Int32.Parse(enterScoreToDel.text);
+            if (ScoreToDel == 0)
+            {
+                return;
+            }
+            int ScoreId = highscores[ScoreToDel - 1].ID;
+
+            DeleteScore(ScoreId);
+            enterScoreToDel.text = string.Empty;
+            deleteDialog.SetActive(!deleteDialog.activeSelf);
+            ShowScores();
+            
+        }
+    }
+
 }
