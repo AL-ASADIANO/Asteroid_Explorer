@@ -1102,13 +1102,13 @@ MonoBehaviour:
     type: 2}
   scoreParent: {fileID: 325888213}
   topRanks: 15
-  savedScores: 15
+  savedScores: 30
   enterName: {fileID: 2081032883}
   enterScoreToDel: {fileID: 686175083}
   nameDialog: {fileID: 843874140}
   deleteDialog: {fileID: 1822640800}
   currentScore: 0
-  InputName: 0
+  InputName: 1
 --- !u!4 &751248014
 Transform:
   m_ObjectHideFlags: 0
@@ -1406,7 +1406,7 @@ Prefab:
     - target: {fileID: 114494769829511132, guid: a0ee46214e8634b4e9048d45aa9f7255,
         type: 2}
       propertyPath: savedScores
-      value: 15
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 114494769829511132, guid: a0ee46214e8634b4e9048d45aa9f7255,
         type: 2}
@@ -1428,6 +1428,11 @@ Prefab:
       propertyPath: enterScoreToDel
       value: 
       objectReference: {fileID: 686175083}
+    - target: {fileID: 114494769829511132, guid: a0ee46214e8634b4e9048d45aa9f7255,
+        type: 2}
+      propertyPath: InputName
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a0ee46214e8634b4e9048d45aa9f7255, type: 2}
   m_IsPrefabParent: 0
