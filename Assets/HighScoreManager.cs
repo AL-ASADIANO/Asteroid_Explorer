@@ -31,20 +31,25 @@ public class HighScoreManager : MonoBehaviour {
 
     public int currentScore = 0;
 
-    public bool InputName = false;
+    public bool inputName = false;
+
+    public bool deletingScore = false;
 
     // Use this for initialization
     void Start () {
        connectionString  = "URI=file:" + Application.dataPath + "/HighScoreDB.sqlite";
+        
+        CreateTable();
 
-       CreateTable();
+        inputName = false;
+        deletingScore = false;
 
-       currentScore = PlayerPrefs.GetInt("CurrentHighScore");
+        currentScore = PlayerPrefs.GetInt("CurrentHighScore");
         // InsertScore("potato", 70);
         if (currentScore != 0)
         {
             nameDialog.SetActive(!nameDialog.activeSelf);
-            InputName = true;
+            inputName = true;
             PlayerPrefs.DeleteKey("CurrentHighScore");
         }
         DeleteExtraScores();
@@ -95,7 +100,7 @@ public class HighScoreManager : MonoBehaviour {
             enterName.text = string.Empty;
             nameDialog.SetActive(!nameDialog.activeSelf);
             ShowScores();
-            InputName = false;
+            inputName = false;
         }
     }
 
@@ -247,12 +252,21 @@ public class HighScoreManager : MonoBehaviour {
 
     public void DeleteScoreMenu()
     {
-        deleteDialog.SetActive(!deleteDialog.activeSelf);
+        if(inputName == false && deletingScore == false)
+        {
+            deletingScore = true;
+            deleteDialog.SetActive(!deleteDialog.activeSelf);
+        }
+        
     }
 
     public void Retry()
     {
-        SceneManager.LoadScene(0);
+        if(inputName == false && deletingScore == false)
+        {
+            SceneManager.LoadScene(0);
+        }
+       
     }
 
     public void BackToHighscore()
@@ -274,6 +288,7 @@ public class HighScoreManager : MonoBehaviour {
             DeleteScore(ScoreId);
             enterScoreToDel.text = string.Empty;
             deleteDialog.SetActive(!deleteDialog.activeSelf);
+            deletingScore = false;
             ShowScores();
             
         }
